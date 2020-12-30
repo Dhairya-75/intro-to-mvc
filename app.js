@@ -29,5 +29,19 @@ app.use(cookieParser());
 app.use('/guest', guestRouter);
 app.use('/manager', managerRouter);
 
+app.use(function (err, req, res, next) {
+	console.log(err)
+	if (err.code) {
+		res.status(err.code).json({
+			name: err.name,
+			message: err.message,
+		});
+	} else {
+		res.status(500).json({
+			name: "SOMETHING_WENT_WRONG",
+			message: "Something went wrong at server side while handling request.",
+		});
+	}
+});
 
 app.listen(5000, () => console.log("Running on 5000"));

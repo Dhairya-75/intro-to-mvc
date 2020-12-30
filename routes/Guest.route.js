@@ -7,4 +7,8 @@ router.get('/ip', GuestController.getIp);
 
 router.get('/browser', GuestController.getBrowser);
 
+router.post('/register', GuestController.register);
+
+router.get('/status/:registrationId', GuestController.status)
+
 module.exports = router;
