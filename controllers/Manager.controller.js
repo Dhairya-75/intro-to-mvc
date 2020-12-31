@@ -28,9 +28,20 @@ const allow = async (req, res, next) => {
 	}
 }
 
+const deleteEntry = async (req, res, next) => {
+	try {
+		const {registrationId} = req.params;
+		const response = await managerService.deleteEntry(registrationId);
+		return res.json({data: response})
+	} catch (error) {
+		next(error);
+	}
+}
+
 
 module.exports = {
 	home,
 	allRegistrations,
-	allow
+	allow,
+	deleteEntry
 }

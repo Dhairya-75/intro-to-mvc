@@ -29,6 +29,21 @@ class ManagerService {
 		    }
 		})
 	}
+
+	/**
+	 *
+	 * @param {ObjectId} registrationId -- id of record of registration
+	 */
+	async deleteEntry(registrationId) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const response = await RegistrationModel.findByIdAndDelete(registrationId);
+				return resolve(response);
+			} catch (error) {
+				reject(error);
+			}
+		})
+	}
 }
 
 module.exports = ManagerService;
